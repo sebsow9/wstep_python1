@@ -1,6 +1,26 @@
 
-ilosc_pierwszych = int(input("Wprowadz ile ma byc liczb pierwszych"))
-#dodac sprawdzanie czy to liczba
+ilosc_pierwszych = input("Wprowadz ile ma byc liczb pierwszych (jako liczbe naturalna): ")
+
+#sprawdzanie czy uzytkownik podal liczbe naturalna dodatnia
+def czy_litera(zmienna):
+    if ('a' <= zmienna <= 'z' ):
+        return True
+    else:
+        return False
+
+def czy_cyfra_wieksza_od_zera(cyfra):
+    cyfra = int(cyfra)
+    if (cyfra <=0 ):
+        return True
+    else:
+        return False
+
+while (czy_litera(ilosc_pierwszych) or czy_cyfra_wieksza_od_zera(ilosc_pierwszych)):
+    ilosc_pierwszych = input("Wprowadzona została niepoprawna wartosc, podaj jeszcze raz: ")
+
+ilosc_pierwszych = int(ilosc_pierwszych)
+
+
 slownik_pierwszych_dwojkowych = {}
 slownik_pierwszych_osemkowych = {}
 slownik_pierwszych_szesnastkowych = {}
@@ -8,7 +28,7 @@ zmienna = 3
 
 count = 0
 
-#funkcja szukajaca liczb pierwszych
+#funkcja szukajaca liczb pierwszych na podstawie wlasnosci, ze wystarczy sprawdzic do dzielnikow zaokraglonego w gore pierwiastka kwadratowego liczby
 def czy_pierwsza(sprawdzana_liczba):
     for z in range(2, int(pow(sprawdzana_liczba, 1/2)+1)):
         x = sprawdzana_liczba % z
@@ -21,7 +41,11 @@ def jaki_system(liczba_pierwsza):
     print("Na jaki system powinna zostac zmieniona liczba (%d) ?" %liczba_pierwsza)
     print("a. dwojkowy b. osemkowy c. szesnastkowy")
     #sprawdzanie czy wprowadzona zostala odpowiednia rzecz
+
+
     system = str(input())
+    while (system != "a" and system != "b" and system != "c"):
+        system = str(input("Podaj a, b lub c: "))
     return system 
 
 #zmiana liczby w dwojkowa i wyciagniecie liczby znakow potrzebnych do jej zaprezentowania
@@ -63,21 +87,27 @@ wartosci_dwojkowe = slownik_pierwszych_dwojkowych.values()
 wartosci_osemkowe = slownik_pierwszych_osemkowych.values()
 wartosci_szesnastkowe = slownik_pierwszych_szesnastkowych.values()
 
-#tworzymy set list u gory by pozbyc sie duplikatow
-#set_wartosci_dwojkowe = list(set(wartosci_dwojkowe))
-#set_wartosci_osemkowe = list(set(wartosci_osemkowe))
-#set_wartosci_szesnastkowe = list(set(wartosci_szesnastkowe))
 
-#zliczamy ile elementow ma nasza tablica stworzona z setu
-#dlugosc_set_dwojkowe = len(set_wartosci_dwojkowe)
-#dlugosc_set_osemkowe = len(set_wartosci_osemkowe)
-#dlugosc_set_szesnastkow = len(set_wartosci_szesnastkowe)
+#definiuje funkcje zliczajaca i wprowadzajaca w slownik ilosci konretnych dlugosci na podstawie tablicy wartosci_.....
 
-#definiuje funkcje zliczajaca i wprowadzajaca w liste konkretne elementy
+def ile_znakow(tablica):
+    słownik = {}
+    for x in tablica:
+        if x in słownik:
+            słownik[x] += 1
+        else:
+            słownik[x] = 1
+    return słownik
 
-#def ile_znakow(tablica):
+ilosc_dlugosci_dwojkowy = ile_znakow(wartosci_dwojkowe)
+ilosc_dlugosci_osemkowe = ile_znakow(wartosci_osemkowe)
+ilosc_dlugosci_szesnastkowe = ile_znakow(wartosci_szesnastkowe)
 
-    
+
+print("Legenda to tekstu ponizej: {ilosc znakow potrzebnych do zamiany : ilosc takich liczb, ilosc znakow potrzebnych do zamiany : ilosc takich liczb, ...}")
+print("%s w liczbach zamienionych na dwojkowy " %ilosc_dlugosci_dwojkowy)
+print("%s w liczbach zamienionych na osemkowy" %ilosc_dlugosci_osemkowe)
+print("%s w liczbach zamienionych na szesnatkowy" %ilosc_dlugosci_szesnastkowe)
 
 
 
