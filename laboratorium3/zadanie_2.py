@@ -39,7 +39,9 @@ def det_times_matrix(matrix, rows, columns):
     return final_matrix
 
 
-def matrix_multiplication(rows_1, rows_2, columns_2, matrix1, matrix2): #opcjonalnie zamiast rows_2 moze byc columns_1
+
+#https://imgur.com/a/dIP958c 
+def matrix_multiplication(rows_1, rows_2, columns_2, matrix1, matrix2): #opcjonalnie zamiast rows_2 moze byc columns_1    
     final_matrix = numpy.empty((rows_1,columns_2))
     for z in range(0,rows_1):
         for g in range(0,columns_2):
@@ -48,10 +50,6 @@ def matrix_multiplication(rows_1, rows_2, columns_2, matrix1, matrix2): #opcjona
                 value = value + (matrix1[z][c]*matrix2[c][g])
             final_matrix[z][g] = value
 
-
-    
-    
-    
     return final_matrix
 
 def cutting_matrix(matrix, rows, columns):
