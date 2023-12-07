@@ -6,7 +6,6 @@ N_queens = int(input("Podaj ilość hetmanow: "))
 tableofpositions = [(random.randint(1,8), random.randint(1,8)) for _ in range(N_queens)]
 rowtable = []
 columntable =[]
-#zmienna = int(str(tableofpositions[0])[3:4])
 
 print(tableofpositions)
 
@@ -30,14 +29,9 @@ def draw_chessboard():
                 
                 zmienna1 = int(str(g[0]))
                 zmienna2 = int(str(g[1]))
-                
-                #argument1 = zmienna1[0]
-                #argument2 = zmienna2[0]
-                
-                
-               
+                            
                 if zmienna1 == j+1 and zmienna2 == i+1:
-                    queen = plt.Rectangle((i+0.25, j+0.25), 0.5, 0.5, facecolor= 'blue', edgecolor='black')
+                    queen = plt.Rectangle((i+0.25, j+0.25), 0.5, 0.5, facecolor= 'pink', edgecolor='black')
                     ax.add_patch(queen)
 
     #limity osi musza sie zgadzac z iloscia kwadratow do nich wlozonych
