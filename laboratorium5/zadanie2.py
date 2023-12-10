@@ -8,7 +8,7 @@ Queen_who_sees1 = (0, 0)
 Queen_who_sees2 = (0, 0)
 parameter = ""
 
-tableofpositions = [(random.randint(1,8), random.randint(1,8)) for _ in range(N_queens)]
+tableofpositions = [(random.randint(1,100), random.randint(1,100)) for _ in range(N_queens)]
 rowtable = []
 columntable =[]
 
@@ -21,8 +21,8 @@ def draw_chessboard():
     fig, fig2 = plt.subplots() 
 
     
-    for i in range(8):
-        for j in range(8):
+    for i in range(100):
+        for j in range(100):
             if (i + j) % 2 == 0: #wspolrzedne kwadratow jak w macierzy
                 color = 'black'     
             else: 
@@ -69,12 +69,49 @@ def draw_chessboard():
                 y_2 = y_2 - 1
                 helpingsquare = plt.Rectangle((x_1 - 0.75, y_2 - 1), 0.5, 1, facecolor = 'red', edgecolor = 'black', linewidth = 0 )
                 fig2.add_patch(helpingsquare)
+    elif parameter == "prawydol":
+        helping = abs(x_1 - x_2)
+        print("prawydol")
+        for _ in range(helping-1):
+            
+            helpingsquare = plt.Rectangle((x_1, y_1 - 2), 1, 1, facecolor ='red', edgecolor = 'black', linewidth = 0.1)
+            fig2.add_patch(helpingsquare)
+            x_1 = x_1 + 1
+            y_1 = y_1 - 1
+    elif parameter == "lewydol":
+        helping = abs(x_1 - x_2)
+        print("lewadol")
+        for _ in range(helping-1):
+            x_1 = x_1 - 1
+            y_1 = y_1 - 1
+            helpingsquare = plt.Rectangle((x_1 - 1, y_1 - 1), 1, 1, facecolor ='red', edgecolor = 'black', linewidth = 0.1)
+            fig2.add_patch(helpingsquare)
+    elif parameter == "prawagora":
+        helping = abs(x_1 - x_2)
+        print("prawagorwa")
+        for _ in range(helping-1):
+            
+            helpingsquare = plt.Rectangle((x_1, y_1), 1, 1, facecolor ='red', edgecolor = 'black', linewidth = 0.1)
+            fig2.add_patch(helpingsquare)
+            x_1 = x_1 + 1
+            y_1 = y_1 + 1
+    elif parameter == "lewagora":
+        helping = abs(x_1 - x_2)
+        print("lewagorwa")
+        for _ in range(helping-1):
+            x_1 = x_1 - 1
+            y_1 = y_1 + 1
+            helpingsquare = plt.Rectangle((x_1 - 1, y_1 + 1), 1, 1, facecolor ='red', edgecolor = 'black', linewidth = 0.1)
+            fig2.add_patch(helpingsquare)
+
+
+
     
     
     
     #limity osi musza sie zgadzac z iloscia kwadratow do nich wlozonych
-    fig2.set_xlim(0, 8)
-    fig2.set_ylim(0, 8)
+    fig2.set_xlim(0, 100)
+    fig2.set_ylim(0, 100)
     
     
         
@@ -128,12 +165,13 @@ def diagonal(table):
         temporary_column = Queen[1]
         
         for Queen_to_check in table:
-            while temporary_column < 9 and temporary_row > 0: #prawy dol przekatnej \ 
+            while temporary_column < 101 and temporary_row > 0: #prawy dol przekatnej \ 
                 if temporary_row == Queen_to_check[0] and temporary_column == Queen_to_check[1] and Queen != Queen_to_check:
                     
                     Queen_who_sees1 = Queen
                     Queen_who_sees2 = Queen_to_check
                     parameter = "prawydol"
+                    print("prawydol")
                     
                     return True
                 temporary_row = temporary_row - 1
@@ -148,7 +186,7 @@ def diagonal(table):
                     Queen_who_sees1 = Queen
                     Queen_who_sees2 = Queen_to_check
                     parameter = "lewydol"
-                    
+                    print("lewydol")
                     return True
                 temporary_row = temporary_row - 1
                 temporary_column = temporary_column - 1
@@ -156,13 +194,13 @@ def diagonal(table):
 
             temporary_column = Queen[1]
             temporary_row = Queen[0]
-            while temporary_column < 9 and temporary_row < 9: #101 #prawa gora przekatnej /
+            while temporary_column < 101 and temporary_row < 101: #101 #prawa gora przekatnej /
                 if temporary_row == Queen_to_check[0] and temporary_column == Queen_to_check[1] and Queen != Queen_to_check:
                     
                     Queen_who_sees1 = Queen
                     Queen_who_sees2 = Queen_to_check
                     parameter = "prawagora"
-                    
+                    print("prawygora")
                     return True
                 temporary_row = temporary_row + 1
                 temporary_column = temporary_column + 1
@@ -170,12 +208,12 @@ def diagonal(table):
 
             temporary_column = Queen[1]
             temporary_row = Queen[0]
-            while temporary_column > 0   and temporary_row < 9: #101: #lewa gora przekatnej \ 
+            while temporary_column > 0   and temporary_row < 101: #101: #lewa gora przekatnej \ 
                 if temporary_row == Queen_to_check[0] and temporary_column == Queen_to_check[1] and Queen != Queen_to_check: #table.index(Queen) != table.index(Queen_to_check)
                     Queen_who_sees1 = Queen
                     Queen_who_sees2 = Queen_to_check
                     parameter = "lewagora"
-                    
+                    print("lewygora")
                     
                     return True
                 temporary_row = temporary_row + 1
