@@ -104,7 +104,7 @@ ilosc_dlugosci_osemkowe = ile_znakow(wartosci_osemkowe)
 ilosc_dlugosci_szesnastkowe = ile_znakow(wartosci_szesnastkowe)
 
 
-print("Legenda to tekstu ponizej: {ilosc znakow potrzebnych do zamiany : ilosc takich liczb, ilosc znakow potrzebnych do zamiany : ilosc takich liczb, ...}")
+print("Legenda do tekstu ponizej: {ilosc znakow potrzebnych do zamiany : ilosc takich liczb, ilosc znakow potrzebnych do zamiany : ilosc takich liczb, ...}")
 print("%s w liczbach zamienionych na dwojkowy " %ilosc_dlugosci_dwojkowy)
 print("%s w liczbach zamienionych na osemkowy" %ilosc_dlugosci_osemkowe)
 print("%s w liczbach zamienionych na szesnatkowy" %ilosc_dlugosci_szesnastkowe)
