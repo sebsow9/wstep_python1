@@ -1,4 +1,6 @@
 import numpy
+import unittest
+
 
 licznik = 1
 counter = 1
@@ -130,5 +132,20 @@ if (rows_m_2 == columns_n_1):
     print("")
     print("Wynik:")
     print(matrix_multiplication(rows_m_1, rows_m_2, columns_n_2, matrix_1, matrix_2))
-    
 
+
+class Matrix_Test(unittest.TestCase):
+    def test_multiplication(self):
+        self.assertTrue(numpy.array_equal(matrix_multiplication(2,2,2, [[2,2], [2,2]], [[2,2], [2,2]]), ([[8,8], [8,8]])))
+    def test_multiplication2(self):
+        self.assertTrue(numpy.array_equal(matrix_multiplication(3,3,3, [[2,2,2], [2,2,2], [2,2,2]], [[2,2,2], [2,2,2], [2,2,2]]), ([[12,12,12], [12,12,12], [12,12,12]])))
+    def test_raise_det(self):
+        self.assertRaises(numpy.linalg.LinAlgError, det_matrix, [2,2])
+    def test_det(self):
+        self.assertEqual(det_matrix([[2,0],[0,2]]), 4)
+    def test_det1(self):
+        self.assertEqual(det_matrix([[4,0,0],[0,4,0],[0,0,4]]), 64)
+
+
+
+unittest.main()
