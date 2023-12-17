@@ -1,4 +1,6 @@
 import numpy
+import unittest
+
 licznik = 1
 counter = 1
 
@@ -21,7 +23,10 @@ def creating_matrix(rows, columns):
         matrix_1_before = matrix
     elif (counter == 2):
         matrix_2_before = matrix
-    matrix = det_times_matrix(matrix, rows, columns)
+    if rows > columns:
+        matrix = det_times_matrix(matrix, columns, columns)
+    elif columns >= rows:
+        matrix = det_times_matrix(matrix, rows, rows)
     counter = counter + 1
     return matrix
 
@@ -33,7 +38,7 @@ def det_times_matrix(matrix, rows, columns):
     det = det_matrix(matrix)
     for z in range(0,rows):
         for g in range(0, columns):
-            matrix[z][g] = matrix[z][g] * det
+            final_matrix[z][g] = matrix[z][g] * det
 
 
     return final_matrix
@@ -98,6 +103,7 @@ print("Podaj wymiar pierwszej macierzy m x n")
 
 rows_m_1 = int(input("m: "))
 columns_n_1 = int(input("n: "))
+matrix_1_before = numpy.empty((rows_m_1,columns_n_1))
 matrix_1 = creating_matrix(rows_m_1, columns_n_1)
 
 print("Podaj wymiar drugiej macierzy m x n")
@@ -105,7 +111,7 @@ print("Podaj wymiar drugiej macierzy m x n")
 rows_m_2 = int(input("m: "))
 columns_n_2 = int(input("n: "))
 
-matrix_1_before = numpy.empty((rows_m_1,columns_n_1))
+
 
 matrix_2_before = numpy.empty((rows_m_2,columns_n_1))
 matrix_2 = creating_matrix(rows_m_2, columns_n_2)
@@ -126,4 +132,4 @@ if (rows_m_2 == columns_n_1):
     print("Wynik:")
     print(matrix_multiplication(rows_m_1, rows_m_2, columns_n_2, matrix_1, matrix_2))
     
-    
+

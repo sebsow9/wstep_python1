@@ -3,12 +3,13 @@ import unittest
 ilosc_pierwszych = input("Wprowadz ile ma byc liczb pierwszych (jako liczbe naturalna): ")
 
 #sprawdzanie czy uzytkownik podal liczbe naturalna dodatnia
+"""
 def czy_litera(zmienna):
     if ('a' <= zmienna <= 'z' ):
         return True
     else:
         return False
-
+"""
 def czy_cyfra_wieksza_od_zera(cyfra):
     cyfra = int(cyfra)
     if (cyfra <=0 ):
@@ -16,7 +17,11 @@ def czy_cyfra_wieksza_od_zera(cyfra):
     else:
         return False
 
-while (czy_litera(ilosc_pierwszych) or czy_cyfra_wieksza_od_zera(ilosc_pierwszych)):
+"""
+czy_litera(ilosc_pierwszych) or 
+"""
+
+while (czy_cyfra_wieksza_od_zera(ilosc_pierwszych)): 
     ilosc_pierwszych = input("Wprowadzona została niepoprawna wartosc, podaj jeszcze raz: ")
 
 ilosc_pierwszych = int(ilosc_pierwszych)
@@ -103,7 +108,7 @@ def ile_znakow(tablica):
 ilosc_dlugosci_dwojkowy = ile_znakow(wartosci_dwojkowe)
 ilosc_dlugosci_osemkowe = ile_znakow(wartosci_osemkowe)
 ilosc_dlugosci_szesnastkowe = ile_znakow(wartosci_szesnastkowe)
-
+print(wartosci_dwojkowe)
 
 print("Legenda do tekstu ponizej: {ilosc znakow potrzebnych do zamiany : ilosc takich liczb, ilosc znakow potrzebnych do zamiany : ilosc takich liczb, ...}")
 print("%s w liczbach zamienionych na dwojkowy " %ilosc_dlugosci_dwojkowy)
@@ -112,5 +117,17 @@ print("%s w liczbach zamienionych na szesnatkowy" %ilosc_dlugosci_szesnastkowe)
 
 
 class dictionaries_Test(unittest.TestCase):
-    def setUp(self):
-        
+    def test_counter1(self):
+        self.assertEqual(ile_znakow([2,3,3,3]), {2: 1, 3: 3})
+    def test_counter2(self):
+        self.assertEqual(ile_znakow([2,3,3,3,4,4,5]), {2: 1, 3: 3, 4: 2, 5: 1})
+    def test_binary_change(self):
+        self.assertEqual(system_dwojkowy(3), 2)
+    def test_octo_change1(self):
+        self.assertEqual(system_osemkowy(7), 1)
+    def test_prime(self):
+        self.assertNotEqual(czy_pierwsza(4), True)
+ 
+
+unittest.main()
+

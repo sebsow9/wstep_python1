@@ -25,14 +25,13 @@ def equation(epsilon, liczby):
 
 class TestRownania(unittest.TestCase):
     def setUp(self):
-        self.equation_answer = pow(2, 1/2)
-        self.result = equation(epsilon, liczby)
-    def test_equation(self):
-        message = "za mala dokladnosc"
-        self.assertAlmostEqual(self.equation_answer, self.result, delta = epsilon, msg = message)
-    def test_equal(self):
-        text = "Zawsze nieprawdziwe, self.result musi byc rowny sobie samemu"
-        self.assertNotEqual(self.result, self.result, msg= text)
+        self.result = pow(2, 1/2)
+    def test_equation1(self):
+        self.assertAlmostEqual(self.result, equation(0.1, liczby),  delta = epsilon)
+    def test_equation2(self):
+        self.assertAlmostEqual(self.result, equation(0.001, liczby),  delta = epsilon)
+    def test_equation3(self):
+        self.assertAlmostEqual(self.result, equation(0.00001, liczby),  delta = epsilon)
     def test_raise(self):
         self.assertRaises(IndexError, equation, epsilon, [0,1,2,3])
         
