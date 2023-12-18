@@ -1,4 +1,6 @@
 import unittest
+
+
 liczby = [0, 1, 2, 3]
 epsilon = float(input("Podaj epsilon (zakres bledu): "))
 def equation(epsilon, liczby):
@@ -33,7 +35,7 @@ class TestRownania(unittest.TestCase):
     def test_equation3(self):
         self.assertAlmostEqual(self.result, equation(0.00001, liczby),  delta = epsilon)
     def test_raise(self):
-        self.assertRaises(IndexError, equation, epsilon, [0,1,2,3])
+        self.assertRaises(IndexError, equation, epsilon, [0,1,2,3]) #zeby powstal blad zeby zmienic te tabele [0,1,2,3]
         
         
 
